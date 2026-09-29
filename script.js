@@ -36,3 +36,14 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach(section => observer.observe(section));
+
+/* Pause other videos when a new video starts playing */
+document.addEventListener('play', event => {
+  if (event.target.tagName === 'VIDEO') {
+    document.querySelectorAll('video').forEach(video => {
+      if (video !== event.target) {
+        video.pause();
+      }
+    });
+  }
+}, true);
